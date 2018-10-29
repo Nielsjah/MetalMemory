@@ -1,0 +1,50 @@
+﻿<Page x:Class="MetalMemory.GameInterface"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MetalMemory"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="560"
+      Title="GameInterface"
+      Background="{StaticResource SpelL}">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="Main Menu" Click="MainMenu" Style="{StaticResource MMButton}" />
+                <Button Grid.Column="1" Content="Save" Click="SaveGame" Style="{StaticResource MMButton}" />
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid Grid.Row="1" x:Name="PlayerGrid">
+                    
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2">
+                <TextBlock x:Name="CountDownTimer" Text="0:30" Grid.Row="2" FontSize="48" FontFamily="Courier New" VerticalAlignment="Center" Foreground="White" Panel.ZIndex="1" HorizontalAlignment="Center" TextDecorations="{x:Null}"/>
+                <Image Name ="TEST" Source="/Images/Effects/MMSeperator.png" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                <TextBlock Grid.Row="0" x:Name="WindowPlayer2" FontSize="48" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

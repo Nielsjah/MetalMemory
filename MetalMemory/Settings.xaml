@@ -1,0 +1,138 @@
+﻿<Page x:Class="MetalMemory.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+       xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:local="clr-namespace:MetalMemory"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="560"
+      Title="Settings">
+    <Page.Background>
+        <ImageBrush ImageSource="Images/Backgrounds/SpelL.png"/>
+    </Page.Background>
+
+    <Grid Grid.Column="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" x:Name="SpelerNaam1" FontFamily="Courier New" FontSize="48"  VerticalContentAlignment="Center"/>
+            <TextBlock Text="Speler 1" Grid.Row="0" FontFamily="Courier New" FontSize="48" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=SpelerNaam1}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <TextBox Grid.Row="1" x:Name="SpelerNaam2" FontFamily="Courier New" FontSize="48" VerticalContentAlignment="Center"/>
+            <TextBlock Text="Speler 2" Grid.Row="1" FontFamily="Courier New" FontSize="48" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=SpelerNaam2}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <TextBox Grid.Row="2" x:Name="SpelerNaam3" FontFamily="Courier New" FontSize="48" VerticalContentAlignment="Center"/>
+            <TextBlock Text="Speler 3" Grid.Row="2" FontFamily="Courier New" FontSize="48" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=SpelerNaam3}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <TextBox Grid.Row="3" x:Name="SpelerNaam4" FontFamily="Courier New" FontSize="48" VerticalContentAlignment="Center"/>
+            <TextBlock Text="Speler 4" Grid.Row="3" FontFamily="Courier New" FontSize="48" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=SpelerNaam4}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton Content="9" Grid.Column="0" GroupName="Speelveld" Name="Grid_3x3" Style="{StaticResource MMRadioButton}"/>
+                    <RadioButton Content="36" Grid.Column="1" GroupName="Speelveld" Name="Grid_6x6" Style="{StaticResource MMRadioButton}"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton Content="16" Grid.Column="0" GroupName="Speelveld" Name="Grid_4x4" IsChecked="True" Style="{StaticResource MMRadioButton}"/>
+                    <RadioButton Content="49" Grid.Column="1" GroupName="Speelveld" Name="Grid_7x7" Style="{StaticResource MMRadioButton}"/>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton Content="25" Grid.Column="0" GroupName="Speelveld" Name="Grid_5x5" Style="{StaticResource MMRadioButton}"/>
+                    <RadioButton Content="64" Grid.Column="1" GroupName="Speelveld" Name="Grid_8x8" Style="{StaticResource MMRadioButton}"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1"  Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <RadioButton Content="double" Grid.Row="0" GroupName="kaartenAantal" Name="KaartenDouble" IsChecked="True" Style="{StaticResource MMRadioButton}"/>
+                <RadioButton Content="triple" Grid.Row="1" GroupName="kaartenAantal" Name="KaartenTriple" Style="{StaticResource MMRadioButton}"/>
+                <RadioButton Content="quad" Grid.Row="2" GroupName="kaartenAantal" Name="KaartenQuad" Style="{StaticResource MMRadioButton}"/>
+            </Grid>
+            <Border CornerRadius="3,0,0,3" Grid.Column="0" BorderBrush="DarkGoldenrod" BorderThickness="2" Margin="5"/>
+            <Border CornerRadius="3,0,0,3" Grid.Column="1" BorderBrush="DarkGoldenrod" BorderThickness="2" Margin="5"/>
+            <Border CornerRadius="3,0,0,3" Grid.Column="1" BorderBrush="DarkGoldenrod" BorderThickness="2" Margin="5"/>
+        </Grid>
+        <Button Content="Start Game" Click="NewGame" Grid.Row="2" Style="{StaticResource MMButton}"/>
+        <Button Content="Load" x:Name="LoadBttn" Click="LoadGame" Grid.Row="3" Style="{StaticResource MMButton}"/>
+    </Grid>
+</Page>

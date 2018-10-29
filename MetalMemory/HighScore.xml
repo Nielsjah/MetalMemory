@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<HighScores>
+  <highScore Naam="Niels" Score="110" Gewonnen="true" />
+  <highScore Naam="Andry" Score="100" Gewonnen="false" />
+  <highScore Naam="Roland" Score="90" Gewonnen="true" />
+  <highScore Naam="Tjeerd" Score="80" Gewonnen="false" />
+  <highScore Naam="Eelke" Score="70" Gewonnen="false" />
+</HighScores>
+

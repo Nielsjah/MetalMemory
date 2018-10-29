@@ -1,0 +1,38 @@
+﻿<Window x:Class="MetalMemory.MMindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MetalMemory"
+        mc:Ignorable="d"
+        Title="MetalMemory" Height="720" Width="1280"
+        ResizeMode="CanResizeWithGrip"
+        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+        WindowStartupLocation="CenterScreen" Background="Black">
+        <!--
+        Source="InitializeGame.xaml"
+        ShowsNavigationUI="false"
+        
+        AllowsTransparency="True"
+        WindowStyle="None"
+        -->
+
+    <!--
+    <NavigationWindow.Background>
+        <SolidColorBrush Opacity="0.5" Color="Black"/>
+    </NavigationWindow.Background>
+        -->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="43.75*"/>
+            <ColumnDefinition Width="56.25*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Frame NavigationUIVisibility="Hidden" x:Name="FrameMenu" Background="{StaticResource MenuL}"/>
+        </Grid>
+        <Grid Grid.Column="1" x:Name="GridGame">
+            <Frame NavigationUIVisibility="Hidden" x:Name="FrameContent" Background="{StaticResource MenuR}"/>
+        </Grid>
+    </Grid>
+</Window>
