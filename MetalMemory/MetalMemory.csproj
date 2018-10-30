@@ -221,6 +221,8 @@
     <Resource Include="Images\GameInterface\playerBackground.png" />
     <Resource Include="Images\Overlays\PlayerPointer.png" />
     <Resource Include="Images\Effects\Gear1.png" />
+    <Resource Include="Images\Backgrounds\Gears.png" />
+    <Resource Include="Images\Effects\Gear4.png" />
     <Content Include="Muziek\505 - Balibulu.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

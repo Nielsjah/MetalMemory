@@ -12,13 +12,14 @@
         <ImageBrush ImageSource="Images/Backgrounds/SpelL.png"/>
     </Page.Background>
 
-    <Grid Grid.Column="0">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
+
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
@@ -26,66 +27,36 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <TextBox Grid.Row="0" x:Name="SpelerNaam1" FontFamily="Courier New" FontSize="48"  VerticalContentAlignment="Center"/>
-            <TextBlock Text="Speler 1" Grid.Row="0" FontFamily="Courier New" FontSize="48" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Text, ElementName=SpelerNaam1}" Value="">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-            <TextBox Grid.Row="1" x:Name="SpelerNaam2" FontFamily="Courier New" FontSize="48" VerticalContentAlignment="Center"/>
-            <TextBlock Text="Speler 2" Grid.Row="1" FontFamily="Courier New" FontSize="48" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Text, ElementName=SpelerNaam2}" Value="">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-            <TextBox Grid.Row="2" x:Name="SpelerNaam3" FontFamily="Courier New" FontSize="48" VerticalContentAlignment="Center"/>
-            <TextBlock Text="Speler 3" Grid.Row="2" FontFamily="Courier New" FontSize="48" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Text, ElementName=SpelerNaam3}" Value="">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-            <TextBox Grid.Row="3" x:Name="SpelerNaam4" FontFamily="Courier New" FontSize="48" VerticalContentAlignment="Center"/>
-            <TextBlock Text="Speler 4" Grid.Row="3" FontFamily="Courier New" FontSize="48" IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Text, ElementName=SpelerNaam4}" Value="">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
+            <Viewbox Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="25,5,25,5">
+                <TextBox x:Name="SpelerNaam1" Style="{StaticResource MMTextBox}"/>
+            </Viewbox>
+            <Viewbox Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25,5,25,5">
+                <TextBlock Text="Speler 1" Style="{StaticResource MMTBTextBlock}" Tag="{Binding ElementName=SpelerNaam1}"/>
+            </Viewbox>
+            <Viewbox Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25,5,25,5">
+                <TextBox x:Name="SpelerNaam2" Style="{StaticResource MMTextBox}"/>
+            </Viewbox>
+            <Viewbox Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25,5,25,5">
+                <TextBlock Text="Speler 2" Style="{StaticResource MMTBTextBlock}" Tag="{Binding ElementName=SpelerNaam2}"/>
+            </Viewbox>
+            <Viewbox Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25,5,25,5">
+                <TextBox Grid.Row="2" x:Name="SpelerNaam3" Style="{StaticResource MMTextBox}"/>
+            </Viewbox>
+            <Viewbox Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25,5,25,5">
+                <TextBlock Text="Speler 3" Style="{StaticResource MMTBTextBlock}" Tag="{Binding ElementName=SpelerNaam3}"/>
+            </Viewbox>
+            <Viewbox Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25,5,25,5">
+                <TextBox Grid.Row="3" x:Name="SpelerNaam4" Style="{StaticResource MMTextBox}"/>
+            </Viewbox>
+            <Viewbox Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25,5,25,5">
+                <TextBlock Text="Speler 4" Style="{StaticResource MMTBTextBlock}" Tag="{Binding ElementName=SpelerNaam4}"/>
+            </Viewbox>
         </Grid>
 
         <Grid Grid.Row="1">
-
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Margin="5">
                 <Grid.RowDefinitions>
@@ -134,5 +105,7 @@
         </Grid>
         <Button Content="Start Game" Click="NewGame" Grid.Row="2" Style="{StaticResource MMButton}"/>
         <Button Content="Load" x:Name="LoadBttn" Click="LoadGame" Grid.Row="3" Style="{StaticResource MMButton}"/>
+        <Image Source="/Images/Backgrounds/Gears.png" Grid.ColumnSpan="1" Grid.RowSpan="5" Panel.ZIndex="-1"/>
     </Grid>
+
 </Page>

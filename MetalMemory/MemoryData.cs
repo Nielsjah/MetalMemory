@@ -68,6 +68,7 @@ namespace MetalMemory
         public int aantalGoed { get; set; }
         public int aantalOver { get; set; }
         public int playerGewonnen { get; set; }
+        public int speeltijd { get; set; }
 
         public GameStatus(int aantalUniek) { aantalOver = aantalUniek; }
         public void Reset() { kaartenGelijk = false; }
@@ -79,6 +80,7 @@ namespace MetalMemory
         public bool gewonnen { get; set; } = false;
         public string naam { get; private set; }
         public int score { get; set; } = 0;
+        public int speeltijd { get; set; } = 0;
 
         public MemoryPlayer(string naam) { this.naam = naam; }
     }
@@ -123,12 +125,14 @@ namespace MetalMemory
         private string Naam;
         private string PopupScore;
         private int Score;
+        private string Speeltijd;
 
         public Control pControl { get; private set; }
         public Image status { get; private set; }
         public string naam { get { return Naam; } set { Naam = value; nieuweData("naam"); } }
         public string popupScore { get { return PopupScore; } set { PopupScore = value; nieuweData("popupScore"); } }
         public int score { get { return Score; } set { Score = value; nieuweData("score"); } }
+        public string speeltijd { get { return Speeltijd; } set { Speeltijd = value; nieuweData("speeltijd"); } }
         public PlayerBord(FrameworkElement root)
         {
             pControl = new Control();

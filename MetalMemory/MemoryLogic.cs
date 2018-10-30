@@ -12,16 +12,14 @@ namespace MetalMemory
     public class MemoryLogic
     {
         public MemoryOverlays KaartFeedback { private get; set; }
+        public GameStatus gameStatus { get; private set; }
+        public MemoryPlayers playerGroup { get; private set; }
 
         private MemoryGame currentGame;
         private Context context;
         private MemoryCards memoryCards;
         private GameInterface gameInterface;
 
-        //private GameMode gameMode;
-        private GameStatus gameStatus;
-
-        private MemoryPlayers playerGroup;
         private List<Move> moves;
         private Timer kaartTimer;
         private int nKaartenGelijk;
@@ -69,7 +67,7 @@ namespace MetalMemory
                 gameStatus = new GameStatus(currentGame.nKaartenUniek);
 
             // setup het game interface
-            gameInterface.Setup(playerGroup);
+            gameInterface.Setup(this);
         }
 
         public void SaveGame(Stream saveStream)
@@ -232,6 +230,7 @@ namespace MetalMemory
 
         public void ExitGame()
         {
+            kaartTimer.Close();
             KaartFeedback = null;
             gameInterface.ExitGame();
         }

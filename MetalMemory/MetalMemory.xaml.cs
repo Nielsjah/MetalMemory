@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
+using System.ComponentModel;
 using System.Windows.Input;
-using System.Windows.Media;
 
 using System.Diagnostics;
 
@@ -50,12 +49,10 @@ namespace MetalMemory
             } 
         }
 
-        // TODO?
-        // forceerd alle threads te sluiten voordat de window sluit
-        // voorkomt de ... error
-        //protected override void OnClosing(CancelEventArgs e)
-        //{
-        //    Environment.Exit(0);
-        //}
+        // forceerd alle threads te sluiten voordat de window sluit - voorkomt null call errors
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

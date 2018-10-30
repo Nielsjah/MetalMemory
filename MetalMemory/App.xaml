@@ -56,8 +56,8 @@
                     -->
                     <Viewbox HorizontalAlignment="Right" Grid.Column="0" Margin="20,5,5,5">
                         <TextBox IsHitTestVisible="False" BorderBrush="Transparent" Background="Transparent"
-                                 Text="" Foreground="Silver" FontSize="80"
-                                 VerticalContentAlignment="Center" FontFamily="Courier New" Height="108" Width="240"/>
+                                 Text="{Binding Path=speeltijd}" Foreground="Silver" FontSize="80"
+                                  HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Courier New" Height="108" Width="240"/>
                     </Viewbox>
                     <Viewbox HorizontalAlignment="Right" Grid.Column="1" Margin="10,5,10,5">
                         <TextBox IsHitTestVisible="False" BorderBrush="Transparent" Background="Transparent"
@@ -73,8 +73,6 @@
             </Grid>
         </ControlTemplate>
 
-        
-        
         <!--360 Clock wise Rotate effect-->
         <Storyboard x:Key="RotateClockWise" Storyboard.TargetProperty="RenderTransform.(RotateTransform.Angle)">
             <DoubleAnimation From="0" To="360" BeginTime="0:0:0" Duration="0:0:6" RepeatBehavior="Forever"/>
@@ -161,14 +159,14 @@
                                         </Border.Background>
                                     </Border>
                                     <Viewbox Stretch="Uniform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 0, 5, 0" >
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto"/>
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto"/>
                                     </Viewbox>
                                 </Grid>
                             </Border>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Foreground" Value="SlateGray" />
+                                <Setter Property="Foreground" Value="SlateGray"/>
                                 <Setter Property="Background" TargetName="shine" Value="Transparent"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -200,13 +198,13 @@
                             </BulletDecorator.Bullet>
                             <Grid Margin="10, 0, 0, 0">
                                 <Border Background="#FF565656" CornerRadius="3,3,3,3" Opacity="1"/>
-                                    <Viewbox Stretch="Uniform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 0, 5, 0" >
+                                <Viewbox Stretch="Uniform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 0, 5, 0" >
                                     <TextBlock Margin="3,1,0,0" Foreground="Silver" FontFamily="Calibri">
                                             <ContentPresenter  HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto" Opacity="0.75"/>
                                     </TextBlock>
                                 </Viewbox>
                             </Grid>
-                           
+
                         </BulletDecorator>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="true">
@@ -218,6 +216,36 @@
             </Setter>
         </Style>
 
+        <!-- MetalMemory textbox -->
+        <Style  x:Key="MMTextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="Width" Value="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}, Mode=FindAncestor}}" />
+            <Setter Property="FontSize" Value="60" />
+            <Setter Property="FontFamily" Value="Courier New" />
+            <Setter Property="Foreground" Value="Silver" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- MetalMemory textbox onderligende TextBlock -->
+        <Style x:Key="MMTBTextBlock" TargetType="{x:Type TextBlock}">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Setter Property="Foreground" Value="DarkGray" />
+            <Setter Property="FontFamily" Value="Courier New"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Tag.Text, RelativeSource={RelativeSource Self}}" Value="">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
 
         <!-- Style setters voor de Highscore datagrid -->
         <Style TargetType="{x:Type DataGridColumnHeader}">

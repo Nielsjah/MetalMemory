@@ -1,11 +1,10 @@
-﻿using System.Data;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.ComponentModel;
 using System.Collections.Generic;
 using System.Timers;
 
-//using System.Diagnostics;
+using System.Diagnostics;
 
 namespace MetalMemory
 {
@@ -15,10 +14,12 @@ namespace MetalMemory
 
         private Context context;
         private MemoryPlayers pPlayerGroup;
+        private GameStatus pGameStatus;
         private MemoryGrid playerGrid;
         private List<PlayerBord> playerBords;
         private List<UIElement> bordControls;
         private Timer popupTimer;
+        private Timer timerClock;
 
         public GameInterface(Context pContext)
         {
@@ -29,9 +30,10 @@ namespace MetalMemory
             playerGrid = new MemoryGrid(PlayerGrid);
         }
 
-        public void Setup(MemoryPlayers playerGroup)
+        public void Setup(MemoryLogic gameLogic)
         {
-            pPlayerGroup = playerGroup;
+            pPlayerGroup = gameLogic.playerGroup;
+            pGameStatus = gameLogic.gameStatus;
 
             playerGrid.Create(2, 2);
 
@@ -43,8 +45,19 @@ namespace MetalMemory
             popupTimer.Interval = 1000;     // tijd tot kaarten weer terug vallen in ms
             popupTimer.AutoReset = false;   // zorgt dat een timer een keer aftelt
 
-            // registreer de callback functie KaartenTerugLeggen voor het event Elapsed
+            // registreer de callback functie KaartenTerugLeggen voor het event popupTimer Elapsed
             popupTimer.Elapsed += popupVerwijderen;
+
+            // timer om de speeltijd bij te houden
+            timerClock = new Timer();
+            timerClock.Interval = 1000;
+            timerClock.AutoReset = true;
+
+            // registreer de callback functie gameTimerUpdate voor het event timerClock Elapsed
+            timerClock.Elapsed += gameTimerUpdate;
+
+            // zet de speeltijd timer aan
+            timerClock.Enabled = true;
 
             int index = 0;
             foreach (MemoryPlayer player in pPlayerGroup.players)
@@ -67,6 +80,7 @@ namespace MetalMemory
 
         public void ExitGame()
         {
+            timerClock.Close();
             popupTimer.Close();
             playerBords = null;
             playerGrid.Delete(bordControls);
@@ -75,7 +89,6 @@ namespace MetalMemory
 
         public void UpdateScore(string popupScore)
         {
-            //Debug.WriteLine("GameInterface UpdateScore");
             int playerIndex = pPlayerGroup.aanZet;
             MemoryPlayer player = pPlayerGroup.players[playerIndex];
             PlayerBord playerBord = playerBords[playerIndex];
@@ -102,6 +115,22 @@ namespace MetalMemory
             MemoryPlayer player = pPlayerGroup.players[playerIndex];
             PlayerBord playerBord = playerBords[playerIndex];
             playerBord.popupScore = "";
+        }
+
+        private void gameTimerUpdate(object sender, ElapsedEventArgs e)
+        {
+            int playerIndex = pPlayerGroup.aanZet;
+            MemoryPlayer player = pPlayerGroup.players[playerIndex];
+            PlayerBord playerBord = playerBords[playerIndex];
+
+            TimeSpan playerSpeeltijd = new TimeSpan(0, 0, player.speeltijd++);
+            playerBord.speeltijd = string.Format("{0}:{1:00}", (int)playerSpeeltijd.TotalMinutes, playerSpeeltijd.Seconds);
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                TimeSpan gameSpeeltijd = new TimeSpan(0, 0, pGameStatus.speeltijd++);
+            gameTimer.Text = string.Format("{0}:{1:00}", (int)gameSpeeltijd.TotalMinutes, gameSpeeltijd.Seconds);
+            });
         }
 
         private void SetAanZetVisibility(int spelerIndex, Visibility visibility)

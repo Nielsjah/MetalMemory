@@ -12,9 +12,9 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="5*"/>
+                <RowDefinition Height="4*"/>
                 <RowDefinition Height="3*"/>
-                <RowDefinition Height="5*"/>
+                <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -30,7 +30,7 @@
                 </Grid>
             </Grid>
             <Grid Grid.Row="2">
-                <TextBlock x:Name="CountDownTimer" Text="0:30" Grid.Row="2" FontSize="48" FontFamily="Courier New" VerticalAlignment="Center" Foreground="White" Panel.ZIndex="1" HorizontalAlignment="Center" TextDecorations="{x:Null}"/>
+                <TextBlock x:Name="gameTimer" Text="" Grid.Row="2" FontSize="48" FontFamily="Courier New" VerticalAlignment="Center" Foreground="White" Panel.ZIndex="1" HorizontalAlignment="Center" TextDecorations="{x:Null}"/>
                 <Image Name ="TEST" Source="/Images/Effects/MMSeperator.png" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
             </Grid>
             <Grid Grid.Row="3">
