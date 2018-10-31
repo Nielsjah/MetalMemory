@@ -43,11 +43,20 @@ namespace MetalMemory
             switch (timerMode)
             {
                 case TimerMode.roundAbout :
-                    if (playerGroup.players.Count == 0) MessageBox.Show("Vul minimaal één speler naam in.");
-                    return;
+                    if (playerGroup.players.Count == 0)
+                    {
+                        MessageBox.Show("Vul minimaal één speler naam in.");
+                        return;
+                    }
+                    else break;
+
                 case TimerMode.timerTurn :
-                    if (playerGroup.players.Count == 0) MessageBox.Show("Vul minimaal twee speler namen in.");
-                    return;
+                    if (playerGroup.players.Count < 2)
+                    {
+                        MessageBox.Show("Vul minimaal twee speler namen in.");
+                        return;
+                    }
+                    else break;
             }
 
             // setup het speelveld groote
