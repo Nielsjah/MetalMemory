@@ -14,10 +14,10 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="5*"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -27,7 +27,7 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <Viewbox Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="25,5,25,5">
+            <Viewbox Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25,5,25,5">
                 <TextBox x:Name="SpelerNaam1" Style="{StaticResource MMTextBox}"/>
             </Viewbox>
             <Viewbox Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25,5,25,5">
@@ -54,58 +54,79 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="6*"/>
-                <ColumnDefinition Width="5*"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" Margin="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <RadioButton Content="9" Grid.Column="0" GroupName="Speelveld" Name="Grid_3x3" Style="{StaticResource MMRadioButton}"/>
-                    <RadioButton Content="36" Grid.Column="1" GroupName="Speelveld" Name="Grid_6x6" Style="{StaticResource MMRadioButton}"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton Content="9" Grid.Column="0" GroupName="Speelveld" Name="Grid_3x3" Style="{StaticResource MMRadioButton}"/>
+                        <RadioButton Content="36" Grid.Column="1" GroupName="Speelveld" Name="Grid_6x6" Style="{StaticResource MMRadioButton}"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton Content="16" Grid.Column="0" GroupName="Speelveld" Name="Grid_4x4" IsChecked="True" Style="{StaticResource MMRadioButton}"/>
+                        <RadioButton Content="49" Grid.Column="1" GroupName="Speelveld" Name="Grid_7x7" Style="{StaticResource MMRadioButton}"/>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton Content="25" Grid.Column="0" GroupName="Speelveld" Name="Grid_5x5" Style="{StaticResource MMRadioButton}"/>
+                        <RadioButton Content="64" Grid.Column="1" GroupName="Speelveld" Name="Grid_8x8" Style="{StaticResource MMRadioButton}"/>
+                    </Grid>
                 </Grid>
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <RadioButton Content="16" Grid.Column="0" GroupName="Speelveld" Name="Grid_4x4" IsChecked="True" Style="{StaticResource MMRadioButton}"/>
-                    <RadioButton Content="49" Grid.Column="1" GroupName="Speelveld" Name="Grid_7x7" Style="{StaticResource MMRadioButton}"/>
+                <Grid Grid.Column="1"  Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <RadioButton Content="Double" Grid.Row="0" GroupName="kaartenAantal" Name="KaartenDouble" IsChecked="True" Style="{StaticResource MMRadioButton}"/>
+                    <RadioButton Content="Triple" Grid.Row="1" GroupName="kaartenAantal" Name="KaartenTriple" Style="{StaticResource MMRadioButton}"/>
+                    <RadioButton Content="Quad" Grid.Row="2" GroupName="kaartenAantal" Name="KaartenQuad" Style="{StaticResource MMRadioButton}"/>
                 </Grid>
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <RadioButton Content="25" Grid.Column="0" GroupName="Speelveld" Name="Grid_5x5" Style="{StaticResource MMRadioButton}"/>
-                    <RadioButton Content="64" Grid.Column="1" GroupName="Speelveld" Name="Grid_8x8" Style="{StaticResource MMRadioButton}"/>
-                </Grid>
+                <Border CornerRadius="3,0,0,3" Grid.Column="0" BorderBrush="DarkGoldenrod" BorderThickness="2" Margin="5"/>
+                <Border CornerRadius="3,0,0,3" Grid.Column="1" BorderBrush="DarkGoldenrod" BorderThickness="2" Margin="5"/>
+                <Border CornerRadius="3,0,0,3" Grid.Column="1" BorderBrush="DarkGoldenrod" BorderThickness="2" Margin="5"/>
             </Grid>
-            <Grid Grid.Column="1"  Margin="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-                <RadioButton Content="double" Grid.Row="0" GroupName="kaartenAantal" Name="KaartenDouble" IsChecked="True" Style="{StaticResource MMRadioButton}"/>
-                <RadioButton Content="triple" Grid.Row="1" GroupName="kaartenAantal" Name="KaartenTriple" Style="{StaticResource MMRadioButton}"/>
-                <RadioButton Content="quad" Grid.Row="2" GroupName="kaartenAantal" Name="KaartenQuad" Style="{StaticResource MMRadioButton}"/>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <RadioButton Content="Round About" Grid.Column="0" GroupName="spelType" Name="roundabout" IsChecked="True" Style="{StaticResource MMRadioButton}"/>
+                <RadioButton Content="Timer Turn" Grid.Column="1" GroupName="spelType" Name="timerturn" Style="{StaticResource MMRadioButton}"/>
+                <Border CornerRadius="3,0,0,3" Grid.ColumnSpan="2" BorderBrush="DarkGoldenrod" BorderThickness="2" Margin="5, 0, 5, 0"/>
             </Grid>
-            <Border CornerRadius="3,0,0,3" Grid.Column="0" BorderBrush="DarkGoldenrod" BorderThickness="2" Margin="5"/>
-            <Border CornerRadius="3,0,0,3" Grid.Column="1" BorderBrush="DarkGoldenrod" BorderThickness="2" Margin="5"/>
-            <Border CornerRadius="3,0,0,3" Grid.Column="1" BorderBrush="DarkGoldenrod" BorderThickness="2" Margin="5"/>
         </Grid>
+
+      
+        
         <Button Content="Start Game" Click="NewGame" Grid.Row="2" Style="{StaticResource MMButton}"/>
         <Button Content="Load" x:Name="LoadBttn" Click="LoadGame" Grid.Row="3" Style="{StaticResource MMButton}"/>
         <Image Source="/Images/Backgrounds/Gears.png" Grid.ColumnSpan="1" Grid.RowSpan="5" Panel.ZIndex="-1"/>
     </Grid>
+  
 
 </Page>

@@ -24,7 +24,7 @@ namespace MetalMemory
         private Timer kaartTimer;
         private int nKaartenGelijk;
 
-        public MemoryLogic(MemoryGame game, MemoryPlayers players, Stream loadStream = null)
+        public MemoryLogic(MemoryGame game, TimerMode timerMode, MemoryPlayers players, Stream loadStream = null)
         {
             // Check of we een spel moeten laden
             bool loadGame = loadStream != null;
@@ -64,7 +64,7 @@ namespace MetalMemory
             if (loadGame)
                 gameStatus = loadStream.Load() as GameStatus;
             else
-                gameStatus = new GameStatus(currentGame.nKaartenUniek);
+                gameStatus = new GameStatus(timerMode, currentGame.nKaartenUniek);
 
             // setup het game interface
             gameInterface.Setup(this);
@@ -170,7 +170,9 @@ namespace MetalMemory
 
         private void UpdatePlayers()
         {
-            if (!gameStatus.kaartenGelijk)
+            // als de kaarten niet gelijk zijn en de game mode is om en om
+            // is de volgende speler aan zet
+            if (!gameStatus.kaartenGelijk && gameStatus.timerMode == TimerMode.roundAbout)
                 playerGroup.NextPlayer();
 
             gameStatus.Reset();
@@ -180,23 +182,28 @@ namespace MetalMemory
 
         private void AddScore()
         {
-            double bonusMultiplier = 1;
-            int totalScore;
-
             if (gameStatus.kaartenGelijk)
             {
+                // als het aantal goed nog nul is, is de multiplier 1
+                double bonusMultiplier = 1;
+
+                // calculeer de multiplier als het aantal goed hoger is dan 0
                 if (Convert.ToBoolean(gameStatus.aantalGoed))
-                {
                     bonusMultiplier = gameStatus.aantalGoed * MemoryScore.Match.BonusMultiplier;
-                }
 
-                int score = MemoryScore.Match.Score;
-                totalScore = Convert.ToInt32(score * bonusMultiplier);
+                // score is ScorePerKaart maal het aantal weggespeelde kaarten
+                int score = MemoryScore.Match.ScorePerKaart * currentGame.nKaartenGelijk;
 
+                // calculeer de totale score
+                int totalScore = Convert.ToInt32(score * bonusMultiplier);
+
+                // update de score
                 playerGroup.CurrentPlayer().score += totalScore;
-                gameStatus.aantalGoed++;
 
+                // update het score interface display
                 gameInterface.UpdateScore(string.Format("+{0}", totalScore));
+
+                gameStatus.aantalGoed++;
             }
             else
                 gameStatus.aantalGoed = 0;
@@ -204,6 +211,9 @@ namespace MetalMemory
 
         private void GameOver()
         {
+            // stop de speeltijd timer
+            gameInterface.timerClock.Enabled = false;
+
             CalculeerUitkomst();
 
             context.highScore.AddScores(playerGroup.players);

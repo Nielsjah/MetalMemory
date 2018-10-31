@@ -3,7 +3,7 @@ using System.Windows;
 using System.ComponentModel;
 using System.Windows.Input;
 
-using System.Diagnostics;
+//using System.Diagnostics;
 
 namespace MetalMemory
 {

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 
 //using System.Diagnostics;
@@ -35,16 +34,24 @@ namespace MetalMemory
             if (SpelerNaam3.Text.notEmpty()) playerGroup.AddPlayer(SpelerNaam3.Text);
             if (SpelerNaam4.Text.notEmpty()) playerGroup.AddPlayer(SpelerNaam4.Text);
 
-            // er moet teminste een speler zijn
-            if (playerGroup.players.Count == 0)
+            // setup de game mode
+            TimerMode timerMode = 0;
+            if ((bool)roundabout.IsChecked) timerMode = TimerMode.roundAbout;
+            if ((bool)timerturn.IsChecked) timerMode = TimerMode.timerTurn;
+
+            // check of er genoeg spelers zijn voor de geselecteerd game mode
+            switch (timerMode)
             {
-                MessageBox.Show("Vul een speler naam in.");
-                return;
+                case TimerMode.roundAbout :
+                    if (playerGroup.players.Count == 0) MessageBox.Show("Vul minimaal één speler naam in.");
+                    return;
+                case TimerMode.timerTurn :
+                    if (playerGroup.players.Count == 0) MessageBox.Show("Vul minimaal twee speler namen in.");
+                    return;
             }
 
             // setup het speelveld groote
             int gridDiameter = 0;
-
             if ((bool)Grid_3x3.IsChecked) gridDiameter = 3;
             if ((bool)Grid_4x4.IsChecked) gridDiameter = 4;
             if ((bool)Grid_5x5.IsChecked) gridDiameter = 5;
@@ -56,11 +63,9 @@ namespace MetalMemory
 
             // setup het aantal kaarten die gelijk moeten zijn
             int aatalGelijk = 0;
-
             if ((bool)KaartenDouble.IsChecked) aatalGelijk = 2;
             if ((bool)KaartenTriple.IsChecked) aatalGelijk = 3;
             if ((bool)KaartenQuad.IsChecked) aatalGelijk = 4;
-
 
             // navigeer naar het spelbord
             context.contentFrame.NavigateBlank();
@@ -69,7 +74,7 @@ namespace MetalMemory
             context.menuFrame.Navigate(context.gameInterface);
 
             //maak een nieuwe game
-            context.memoryGame.RunGame(playerGroup, gridGroote, aatalGelijk);
+            context.memoryGame.RunGame(playerGroup, gridGroote, timerMode, aatalGelijk);
         }
 
         private void LoadGame(object sender, RoutedEventArgs e)

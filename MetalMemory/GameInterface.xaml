@@ -13,8 +13,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="4*"/>
+                <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="3*"/>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1.5*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -24,26 +25,10 @@
                 <Button Grid.Column="0" Content="Main Menu" Click="MainMenu" Style="{StaticResource MMButton}" />
                 <Button Grid.Column="1" Content="Save" Click="SaveGame" Style="{StaticResource MMButton}" />
             </Grid>
-            <Grid Grid.Row="1">
-                <Grid Grid.Row="1" x:Name="PlayerGrid">
-                    
-                </Grid>
-            </Grid>
-            <Grid Grid.Row="2">
-                <TextBlock x:Name="gameTimer" Text="" Grid.Row="2" FontSize="48" FontFamily="Courier New" VerticalAlignment="Center" Foreground="White" Panel.ZIndex="1" HorizontalAlignment="Center" TextDecorations="{x:Null}"/>
-                <Image Name ="TEST" Source="/Images/Effects/MMSeperator.png" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
-            </Grid>
+            <Grid Grid.Row="1" x:Name="PlayerGrid"/>
             <Grid Grid.Row="3">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="4*"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                </Grid>
-                <TextBlock Grid.Row="0" x:Name="WindowPlayer2" FontSize="48" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="gameTimer" Text="" Grid.Row="2" FontSize="48" FontFamily="Courier New" VerticalAlignment="Center" Foreground="White" Panel.ZIndex="1" HorizontalAlignment="Center" TextDecorations="{x:Null}"/>
+                <Image Name ="TEST" Source="/Images/Effects/MMSeperator.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
         </Grid>
     </Grid>

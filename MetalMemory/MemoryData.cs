@@ -13,7 +13,7 @@ namespace MetalMemory
     {
         public struct Match
         {
-            public const int Score = 5;
+            public const int ScorePerKaart = 5;
             public const double BonusMultiplier = 1.5;
         }
     }
@@ -27,12 +27,11 @@ namespace MetalMemory
         public const string sOverlayLocatie = "Images/Overlays/{0}.png";
         public const string sOverlayFout = "Cancel";
         public const string sOverlayGoed = "Checkmark";
+        public const int speeltijdTimerTurn = 30;
     }
 
     public enum Kaart { voorkant, achterkant }
-
-    // TODO
-    //public enum TimerMode { timerTurn, roundAbout }
+    public enum TimerMode { timerTurn, roundAbout }
 
     public class Context
     {
@@ -53,13 +52,6 @@ namespace MetalMemory
         }
     }
 
-    // TODO
-    //[Serializable]
-    //public class GameMode
-    //{
-    //    public TimerMode timerMode = TimerMode.timerTurn;
-    //}
-
     [Serializable]
     public class GameStatus
     {
@@ -69,8 +61,10 @@ namespace MetalMemory
         public int aantalOver { get; set; }
         public int playerGewonnen { get; set; }
         public int speeltijd { get; set; }
+        public int timeRemaining { get; set; } = GameData.speeltijdTimerTurn;
+        public TimerMode timerMode { get; set; }
 
-        public GameStatus(int aantalUniek) { aantalOver = aantalUniek; }
+        public GameStatus(TimerMode timerMode, int aantalUniek) { this.timerMode = timerMode; aantalOver = aantalUniek; }
         public void Reset() { kaartenGelijk = false; }
     }
 

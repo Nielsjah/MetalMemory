@@ -45,13 +45,13 @@ namespace MetalMemory
         }
 
         // new game function entry
-        public void RunGame(MemoryPlayers players, Point gridGroote, int nKaartenGelijk)
+        public void RunGame(MemoryPlayers players, Point gridGroote, TimerMode timerMode, int nKaartenGelijk)
         {
-            SetupGame(players, gridGroote, nKaartenGelijk);
+            SetupGame(players, gridGroote, timerMode, nKaartenGelijk);
         }
 
         // create/load a game
-        private void SetupGame(MemoryPlayers players = null, Point gridGroote = new Point(), int nKaartenGelijk = 0, Stream loadStream = null)
+        private void SetupGame(MemoryPlayers players = null, Point gridGroote = new Point(), TimerMode timerMode = 0, int nKaartenGelijk = 0, Stream loadStream = null)
         {
             // Check of we een spel moeten laden
             bool loadGame = loadStream != null;
@@ -70,7 +70,7 @@ namespace MetalMemory
             memoryCards = new MemoryCards(this, loadStream);
 
             // setup de game logic
-            memoryLogic = new MemoryLogic(this, players, loadStream);
+            memoryLogic = new MemoryLogic(this, timerMode, players, loadStream);
         }
 
         public void SaveGame()

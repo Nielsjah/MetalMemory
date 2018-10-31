@@ -219,6 +219,7 @@
         <!-- MetalMemory textbox -->
         <Style  x:Key="MMTextBox" TargetType="{x:Type TextBox}">
             <Setter Property="Width" Value="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}, Mode=FindAncestor}}" />
+            <Setter Property="CaretBrush" Value="white" />
             <Setter Property="FontSize" Value="60" />
             <Setter Property="FontFamily" Value="Courier New" />
             <Setter Property="Foreground" Value="Silver" />

@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Collections.Generic;
 using System.Timers;
 
-using System.Diagnostics;
+//using System.Diagnostics;
 
 namespace MetalMemory
 {
@@ -19,7 +19,7 @@ namespace MetalMemory
         private List<PlayerBord> playerBords;
         private List<UIElement> bordControls;
         private Timer popupTimer;
-        private Timer timerClock;
+        public Timer timerClock { get; private set; }
 
         public GameInterface(Context pContext)
         {
@@ -123,14 +123,51 @@ namespace MetalMemory
             MemoryPlayer player = pPlayerGroup.players[playerIndex];
             PlayerBord playerBord = playerBords[playerIndex];
 
+            // update individuele speelijd in het player bord van de speeler
             TimeSpan playerSpeeltijd = new TimeSpan(0, 0, player.speeltijd++);
             playerBord.speeltijd = string.Format("{0}:{1:00}", (int)playerSpeeltijd.TotalMinutes, playerSpeeltijd.Seconds);
 
-            Application.Current.Dispatcher.Invoke(() =>
+            // update de game timer in het midden van het game interface
+            switch (pGameStatus.timerMode)
             {
-                TimeSpan gameSpeeltijd = new TimeSpan(0, 0, pGameStatus.speeltijd++);
-            gameTimer.Text = string.Format("{0}:{1:00}", (int)gameSpeeltijd.TotalMinutes, gameSpeeltijd.Seconds);
-            });
+                // om en om spel
+                case TimerMode.roundAbout:
+                    // update het de game timer display
+                    TimeSpan gameSpeeltijd = new TimeSpan(0, 0, pGameStatus.speeltijd);
+                    Application.Current.Dispatcher.Invoke(
+                        () => gameTimer.Text = string.Format("{0}:{1:00}", (int)gameSpeeltijd.TotalMinutes, gameSpeeltijd.Seconds));
+                    break;
+
+                // spelen om en om voor een bepaalde tijd (GameData.speeltijdTimerTurn in MemoryData)
+                case TimerMode.timerTurn:
+                    // als de timer nul is, is de volgende speler aan zet
+                    if (!Convert.ToBoolean(pGameStatus.timeRemaining--))
+                    {
+                        // selecteer de volgende speler
+                        pPlayerGroup.NextPlayer();
+
+                        // update het pijltje die de speler aan zet aangeeft
+                        UpdateAanZet();
+
+                        // reset de timer
+                        pGameStatus.timeRemaining = GameData.speeltijdTimerTurn;
+                    }
+
+                    // update het de game timer display
+                    TimeSpan playerTijdOver = new TimeSpan(0, 0, pGameStatus.timeRemaining);
+                    Application.Current.Dispatcher.Invoke(
+                        () => gameTimer.Text = string.Format("{0}:{1:00}", (int)playerTijdOver.TotalMinutes, playerTijdOver.Seconds));
+                    break;
+            }
+
+            // update de game speeltijd
+            pGameStatus.speeltijd++;
+
+            //    Application.Current.Dispatcher.Invoke(() =>
+            //    {
+            //        TimeSpan gameSpeeltijd = new TimeSpan(0, 0, pGameStatus.speeltijd++);
+            //        gameTimer.Text = string.Format("{0}:{1:00}", (int)gameSpeeltijd.TotalMinutes, gameSpeeltijd.Seconds);
+            //    });
         }
 
         private void SetAanZetVisibility(int spelerIndex, Visibility visibility)
